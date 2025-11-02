@@ -2,6 +2,8 @@ package br.com.ZippyGo.Sistema_de_Diversidades.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "RACA_ETNIA")
 public class Raca_Etnia {
@@ -15,8 +17,12 @@ public class Raca_Etnia {
             sequenceName = "SEQ_PADRAO",
             allocationSize = 1
     )
-    private Integer cd_ret;
+    private Integer cd_raca_etnia;
 
     @Column(name = "NM_RACA_ETNIA")
-    private String nm_ret;
+    private String nm_raca_etnia;
+
+    @OneToMany(mappedBy = "racaEtnia", fetch = FetchType.LAZY)
+    private List<Funcionarios> funcionarios;
+
 }

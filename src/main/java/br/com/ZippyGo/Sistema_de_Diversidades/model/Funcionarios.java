@@ -1,7 +1,6 @@
 package br.com.ZippyGo.Sistema_de_Diversidades.model;
 
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -10,35 +9,35 @@ import java.util.Objects;
 public class Funcionarios {
 
     @Id
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "SEQ_PADRAO")
-    //Seq_Padrão, usada para Id aumenta de 1 em 1
-    @SequenceGenerator(
-            name = "SEQ_PADRAO",
-            sequenceName = "SEQ_PADRAO",
-            allocationSize = 1
-    )
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_PADRAO")
+    @SequenceGenerator(name = "SEQ_PADRAO", sequenceName = "SEQ_PADRAO", allocationSize = 1)
+    private Integer cd_funcionario;
 
-    private String cd_funcionario;
-
+    @Column(length = 100)
     private String nm_funcionario;
-    private LocalDate dt_funcionario;
-    private Integer cd_genero;
 
-    @Column(name = "cd_raca_etnia")
-    private Integer cd_ret;
+    private LocalDate dt_contratacao;
 
-    @Column(name = "cd_estado_civil")
-    private Integer cd_osx;
+    @ManyToOne
+    @JoinColumn(name = "cd_genero", referencedColumnName = "cd_genero")
+    private Genero genero;
 
+    @ManyToOne
+    @JoinColumn(name = "cd_raca_etnia", referencedColumnName = "cd_raca_etnia")
+    private Raca_Etnia racaEtnia;
+
+    @ManyToOne
+    @JoinColumn(name = "cd_orientacao_sexual", referencedColumnName = "cd_orientacao_sexual")
+    private Orientacao_Sexual orientacaoSexual;
+
+    @Column(length = 10)
     private String status_funcionario;
 
-    public String getCd_funcionario() {
+    public Integer getCd_funcionario() {
         return cd_funcionario;
     }
 
-    public void setCd_funcionario(String cd_funcionario) {
+    public void setCd_funcionario(Integer cd_funcionario) {
         this.cd_funcionario = cd_funcionario;
     }
 
@@ -50,36 +49,36 @@ public class Funcionarios {
         this.nm_funcionario = nm_funcionario;
     }
 
-    public LocalDate getDt_funcionario() {
-        return dt_funcionario;
+    public LocalDate getDt_contratacao() {
+        return dt_contratacao;
     }
 
-    public void setDt_funcionario(LocalDate dt_funcionario) {
-        this.dt_funcionario = dt_funcionario;
+    public void setDt_contratacao(LocalDate dt_contratacao) {
+        this.dt_contratacao = dt_contratacao;
     }
 
-    public Integer getCd_genero() {
-        return cd_genero;
+    public Genero getGenero() {
+        return genero;
     }
 
-    public void setCd_genero(Integer cd_genero) {
-        this.cd_genero = cd_genero;
+    public void setGenero(Genero genero) {
+        this.genero = genero;
     }
 
-    public Integer getCd_ret() {
-        return cd_ret;
+    public Raca_Etnia getRacaEtnia() {
+        return racaEtnia;
     }
 
-    public void setCd_ret(Integer cd_ret) {
-        this.cd_ret = cd_ret;
+    public void setRacaEtnia(Raca_Etnia racaEtnia) {
+        this.racaEtnia = racaEtnia;
     }
 
-    public Integer getCd_osx() {
-        return cd_osx;
+    public Orientacao_Sexual getOrientacaoSexual() {
+        return orientacaoSexual;
     }
 
-    public void setCd_osx(Integer cd_osx) {
-        this.cd_osx = cd_osx;
+    public void setOrientacaoSexual(Orientacao_Sexual orientacaoSexual) {
+        this.orientacaoSexual = orientacaoSexual;
     }
 
     public String getStatus_funcionario() {
@@ -94,11 +93,11 @@ public class Funcionarios {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Funcionarios that = (Funcionarios) o;
-        return Objects.equals(cd_funcionario, that.cd_funcionario) && Objects.equals(nm_funcionario, that.nm_funcionario) && Objects.equals(dt_funcionario, that.dt_funcionario) && Objects.equals(cd_genero, that.cd_genero) && Objects.equals(cd_ret, that.cd_ret) && Objects.equals(cd_osx, that.cd_osx) && Objects.equals(status_funcionario, that.status_funcionario);
+        return Objects.equals(cd_funcionario, that.cd_funcionario) && Objects.equals(nm_funcionario, that.nm_funcionario) && Objects.equals(dt_contratacao, that.dt_contratacao) && Objects.equals(genero, that.genero) && Objects.equals(racaEtnia, that.racaEtnia) && Objects.equals(orientacaoSexual, that.orientacaoSexual) && Objects.equals(status_funcionario, that.status_funcionario);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(cd_funcionario, nm_funcionario, dt_funcionario, cd_genero, cd_ret, cd_osx, status_funcionario);
+        return Objects.hash(cd_funcionario, nm_funcionario, dt_contratacao, genero, racaEtnia, orientacaoSexual, status_funcionario);
     }
 }

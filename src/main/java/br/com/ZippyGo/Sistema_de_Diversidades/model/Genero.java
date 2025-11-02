@@ -2,6 +2,8 @@ package br.com.ZippyGo.Sistema_de_Diversidades.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "GENERO")
 public class Genero {
@@ -18,6 +20,10 @@ public class Genero {
     )
     private Integer cd_genero;
 
-    @Column(name = "NM_GENERO")
+    @Column(name = "NM_GENERO", length = 10)
     private String nm_genero;
+
+    @OneToMany(mappedBy = "cd_genero", fetch = FetchType.LAZY)
+    private List<Funcionarios> funcionarios;
+
 }
