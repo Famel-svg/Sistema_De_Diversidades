@@ -23,7 +23,30 @@ public class Genero {
     @Column(name = "NM_GENERO", length = 50)
     private String nmGenero;
 
-    @OneToMany(mappedBy = "cd_genero", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "genero", fetch = FetchType.LAZY)
     private List<Funcionario> funcionarios;
 
+    public Integer getCdGenero() {
+        return cdGenero;
+    }
+
+    public void setCdGenero(Integer cdGenero) {
+        this.cdGenero = cdGenero;
+    }
+
+    public String getNmGenero() {
+        return nmGenero;
+    }
+
+    public void setNmGenero(String nmGenero) {
+        this.nmGenero = nmGenero;
+    }
+
+    public List<Funcionario> getFuncionarios() {
+        return funcionarios;
+    }
+
+    public void setFuncionarios(List<Funcionario> funcionarios) {
+        this.funcionarios = funcionarios;
+    }
 }
