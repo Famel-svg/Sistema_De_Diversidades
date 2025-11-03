@@ -7,7 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SistemaDeDiversidadesApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SistemaDeDiversidadesApplication.class, args);
+
+        SpringApplication.run(SistemaDeDiversidadesApplication.class, args);
 	}
 
 }

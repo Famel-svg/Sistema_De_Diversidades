@@ -18,12 +18,12 @@ public class Genero {
             sequenceName = "SEQ_PADRAO",
             allocationSize = 1
     )
-    private Integer cd_genero;
+    private Integer cdGenero;
 
-    @Column(name = "NM_GENERO", length = 10)
-    private String nm_genero;
+    @Column(name = "NM_GENERO", length = 50)
+    private String nmGenero;
 
     @OneToMany(mappedBy = "cd_genero", fetch = FetchType.LAZY)
-    private List<Funcionarios> funcionarios;
+    private List<Funcionario> funcionarios;
 
 }

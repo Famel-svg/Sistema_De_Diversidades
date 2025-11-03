@@ -5,9 +5,8 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "ORIENTACAO_SEXUAL")
-public class Orientacao_Sexual {
-
+@Table(name = "RACA_ETNIA")
+public class RacaEtnia {
     @Id
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
@@ -18,11 +17,12 @@ public class Orientacao_Sexual {
             sequenceName = "SEQ_PADRAO",
             allocationSize = 1
     )
-    private Integer cd_orientacao_sexual;
+    private Integer cd_raca_etnia;
 
-    @Column(name = "nm_orientacao", length = 50)
-    private String nm_orientacao_sexual;
+    @Column(name = "NM_RACA_ETNIA")
+    private String nm_raca_etnia;
 
-    @OneToMany(mappedBy = "orientacaoSexual", fetch = FetchType.LAZY)
-    private List<Funcionarios> funcionarios;
+    @OneToMany(mappedBy = "racaEtnia", fetch = FetchType.LAZY)
+    private List<Funcionario> funcionarios;
+
 }
