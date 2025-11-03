@@ -9,56 +9,55 @@ import java.util.Objects;
 public class Funcionario {
 
     @Id
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE, generator = "SEQ_PADRAO"
-    )
-    @SequenceGenerator(
-            name = "SEQ_PADRAO", sequenceName = "SEQ_PADRAO", allocationSize = 1
-    )
-    private Integer cdFuncionario;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_PADRAO")
+    @SequenceGenerator(name = "SEQ_PADRAO", sequenceName = "SEQ_PADRAO", allocationSize = 1)
+    @Column(name = "cd_funcionario")
+    private Integer cdFuncionario;  // ✅ camelCase
 
-    @Column(length = 100)
-    private String nmFuncionario;
+    @Column(name = "nm_funcionario", length = 100)
+    private String nmFuncionario;  // ✅ camelCase
 
-    private LocalDate dtContratacao;
+    @Column(name = "dt_contratacao")
+    private LocalDate dtContratacao;  // ✅ camelCase
 
     @ManyToOne
-    @JoinColumn(name = "cdGenero", referencedColumnName = "cd_genero")
+    @JoinColumn(name = "cd_genero")
     private Genero genero;
 
     @ManyToOne
-    @JoinColumn(name = "cdRacaEtnia", referencedColumnName = "cd_raca_etnia")
+    @JoinColumn(name = "cd_raca_etnia")
     private RacaEtnia racaEtnia;
 
     @ManyToOne
-    @JoinColumn(name = "cdOrientacaoSexual", referencedColumnName = "cd_orientacao_sexual")
+    @JoinColumn(name = "cd_orientacao_sexual")
     private OrientacaoSexual orientacaoSexual;
 
-    @Column(length = 10)
-    private String status_funcionario;
+    @Column(name = "status_funcionario", length = 10)
+    private String statusFuncionario;  // ✅ camelCase
 
-    public Integer getCd_funcionario() {
+    // Getters e Setters
+    public Integer getCdFuncionario() {
         return cdFuncionario;
     }
 
-    public void setCd_funcionario(Integer cd_funcionario) {
-        this.cdFuncionario = cd_funcionario;
+    public void setCdFuncionario(Integer cdFuncionario) {
+        this.cdFuncionario = cdFuncionario;
     }
 
-    public String getNm_funcionario() {
+    public String getNmFuncionario() {
         return nmFuncionario;
     }
 
-    public void setNm_funcionario(String nm_funcionario) {
-        this.nmFuncionario = nm_funcionario;
+    public void setNmFuncionario(String nmFuncionario) {
+        this.nmFuncionario = nmFuncionario;
     }
 
-    public LocalDate getDt_contratacao() {
+    public LocalDate getDtContratacao() {
         return dtContratacao;
     }
 
-    public void setDt_contratacao(LocalDate dt_contratacao) {
-        this.dtContratacao = dt_contratacao;
+    public void setDtContratacao(LocalDate dtContratacao) {
+        this.dtContratacao = dtContratacao;
     }
 
     public Genero getGenero() {
@@ -85,23 +84,23 @@ public class Funcionario {
         this.orientacaoSexual = orientacaoSexual;
     }
 
-    public String getStatus_funcionario() {
-        return status_funcionario;
+    public String getStatusFuncionario() {
+        return statusFuncionario;
     }
 
-    public void setStatus_funcionario(String status_funcionario) {
-        this.status_funcionario = status_funcionario;
+    public void setStatusFuncionario(String statusFuncionario) {
+        this.statusFuncionario = statusFuncionario;
     }
 
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Funcionario that = (Funcionario) o;
-        return Objects.equals(cdFuncionario, that.cdFuncionario) && Objects.equals(nmFuncionario, that.nmFuncionario) && Objects.equals(dtContratacao, that.dtContratacao) && Objects.equals(genero, that.genero) && Objects.equals(racaEtnia, that.racaEtnia) && Objects.equals(orientacaoSexual, that.orientacaoSexual) && Objects.equals(status_funcionario, that.status_funcionario);
+        return Objects.equals(cdFuncionario, that.cdFuncionario);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(cdFuncionario, nmFuncionario, dtContratacao, genero, racaEtnia, orientacaoSexual, status_funcionario);
+        return Objects.hash(cdFuncionario);
     }
 }

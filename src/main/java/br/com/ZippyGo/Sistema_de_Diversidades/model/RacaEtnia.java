@@ -1,51 +1,53 @@
 package br.com.ZippyGo.Sistema_de_Diversidades.model;
 
 import jakarta.persistence.*;
-
 import java.util.List;
 
 @Entity
 @Table(name = "RACA_ETNIA")
 public class RacaEtnia {
+
     @Id
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "SEQ_PADRAO")
-    //Seq_Padrão, usada para Id aumenta de 1 em 1
+            generator = "SEQ_PADRAO"
+    )
     @SequenceGenerator(
             name = "SEQ_PADRAO",
             sequenceName = "SEQ_PADRAO",
             allocationSize = 1
     )
-    private Integer cd_raca_etnia;
+    @Column(name = "cd_raca_etnia")
+    private Integer cdRacaEtnia;
 
     @Column(name = "NM_RACA_ETNIA")
-    private String nm_raca_etnia;
+    private String nmRacaEtnia;
 
     @OneToMany(mappedBy = "racaEtnia", fetch = FetchType.LAZY)
-    private List<Funcionario> funcionarios;
+    private List<Funcionario> funcionario;
 
-    public Integer getCd_raca_etnia() {
-        return cd_raca_etnia;
+    // Getters e Setters
+    public Integer getCdRacaEtnia() {
+        return cdRacaEtnia;
     }
 
-    public void setCd_raca_etnia(Integer cd_raca_etnia) {
-        this.cd_raca_etnia = cd_raca_etnia;
+    public void setCdRacaEtnia(Integer cdRacaEtnia) {
+        this.cdRacaEtnia = cdRacaEtnia;
     }
 
-    public String getNm_raca_etnia() {
-        return nm_raca_etnia;
+    public String getNmRacaEtnia() {
+        return nmRacaEtnia;
     }
 
-    public void setNm_raca_etnia(String nm_raca_etnia) {
-        this.nm_raca_etnia = nm_raca_etnia;
+    public void setNmRacaEtnia(String nmRacaEtnia) {
+        this.nmRacaEtnia = nmRacaEtnia;
     }
 
-    public List<Funcionario> getFuncionarios() {
-        return funcionarios;
+    public List<Funcionario> getFuncionario() {
+        return funcionario;
     }
 
     public void setFuncionarios(List<Funcionario> funcionarios) {
-        this.funcionarios = funcionarios;
+        this.funcionario = funcionario;
     }
 }

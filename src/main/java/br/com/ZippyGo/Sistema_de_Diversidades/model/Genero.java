@@ -1,7 +1,6 @@
 package br.com.ZippyGo.Sistema_de_Diversidades.model;
 
 import jakarta.persistence.*;
-
 import java.util.List;
 
 @Entity
@@ -10,22 +9,23 @@ public class Genero {
 
     @Id
     @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "SEQ_PADRAO")
-    //Seq_Padrão, usada para Id aumenta de 1 em 1
+            strategy = GenerationType.SEQUENCE, generator = "SEQ_PADRAO"
+    )
     @SequenceGenerator(
             name = "SEQ_PADRAO",
             sequenceName = "SEQ_PADRAO",
             allocationSize = 1
     )
+    @Column(name = "CD_GENERO")
     private Integer cdGenero;
 
-    @Column(name = "NM_GENERO", length = 50)
+    @Column(name = "NM_GENERO", length = 10)
     private String nmGenero;
 
     @OneToMany(mappedBy = "genero", fetch = FetchType.LAZY)
-    private List<Funcionario> funcionarios;
+    private List<Funcionario> funcionario;
 
+    // Getters e Setters
     public Integer getCdGenero() {
         return cdGenero;
     }
@@ -42,11 +42,11 @@ public class Genero {
         this.nmGenero = nmGenero;
     }
 
-    public List<Funcionario> getFuncionarios() {
-        return funcionarios;
+    public List<Funcionario> getFuncionario() {
+        return funcionario;
     }
 
-    public void setFuncionarios(List<Funcionario> funcionarios) {
-        this.funcionarios = funcionarios;
+    public void setFuncionarios(List<Funcionario> funcionario) {
+        this.funcionario = funcionario;
     }
 }

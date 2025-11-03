@@ -1,7 +1,6 @@
 package br.com.ZippyGo.Sistema_de_Diversidades.model;
 
 import jakarta.persistence.*;
-
 import java.util.List;
 
 @Entity
@@ -9,44 +8,39 @@ import java.util.List;
 public class OrientacaoSexual {
 
     @Id
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "SEQ_PADRAO")
-    //Seq_Padrão, usada para Id aumenta de 1 em 1
-    @SequenceGenerator(
-            name = "SEQ_PADRAO",
-            sequenceName = "SEQ_PADRAO",
-            allocationSize = 1
-    )
-    private Integer cd_orientacao_sexual;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_PADRAO")
+    @SequenceGenerator(name = "SEQ_PADRAO", sequenceName = "SEQ_PADRAO", allocationSize = 1)
+    @Column(name = "cd_orientacao_sexual")
+    private Integer cdOrientacaoSexual;
 
     @Column(name = "nm_orientacao", length = 50)
-    private String nm_orientacao_sexual;
+    private String nmOrientacao;
 
     @OneToMany(mappedBy = "orientacaoSexual", fetch = FetchType.LAZY)
-    private List<Funcionario> funcionarios;
+    private List<Funcionario> funcionario;
 
-    public Integer getCd_orientacao_sexual() {
-        return cd_orientacao_sexual;
+    // Getters e Setters
+    public Integer getCdOrientacaoSexual() {
+        return cdOrientacaoSexual;
     }
 
-    public void setCd_orientacao_sexual(Integer cd_orientacao_sexual) {
-        this.cd_orientacao_sexual = cd_orientacao_sexual;
+    public void setCdOrientacaoSexual(Integer cdOrientacaoSexual) {
+        this.cdOrientacaoSexual = cdOrientacaoSexual;
     }
 
-    public String getNm_orientacao_sexual() {
-        return nm_orientacao_sexual;
+    public String getNmOrientacao() {
+        return nmOrientacao;
     }
 
-    public void setNm_orientacao_sexual(String nm_orientacao_sexual) {
-        this.nm_orientacao_sexual = nm_orientacao_sexual;
+    public void setNmOrientacao(String nmOrientacao) {
+        this.nmOrientacao = nmOrientacao;
     }
 
-    public List<Funcionario> getFuncionarios() {
-        return funcionarios;
+    public List<Funcionario> getFuncionario() {
+        return funcionario;
     }
 
-    public void setFuncionarios(List<Funcionario> funcionarios) {
-        this.funcionarios = funcionarios;
+    public void setFuncionario(List<Funcionario> funcionario) {
+        this.funcionario = funcionario;
     }
 }

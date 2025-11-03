@@ -7,13 +7,13 @@ public record FuncionarioExibicaoDTO (
 
         public FuncionarioExibicaoDTO(Funcionario funcionario){
             this(
-                    funcionario.getCd_funcionario(),
-                    funcionario.getNm_funcionario(),
-                    funcionario.getDt_contratacao().toString(),
+                    funcionario.getCdFuncionario(),
+                    funcionario.getNmFuncionario(),
+                    funcionario.getDtContratacao().toString(),
                     funcionario.getGenero().toString(),
                     funcionario.getOrientacaoSexual().toString(),
                     funcionario.getRacaEtnia().toString(),
-                    funcionario.getStatus_funcionario()
+                    funcionario.getStatusFuncionario()
             );
         }
 }
