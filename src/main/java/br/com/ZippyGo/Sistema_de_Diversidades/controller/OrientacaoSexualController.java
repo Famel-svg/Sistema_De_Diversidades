@@ -9,25 +9,25 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/orientacoes")
+@RequestMapping("/api")
 public class OrientacaoSexualController {
 
     @Autowired
     private Orientacao_SexualRepository orientacaoRepository;
 
-    @GetMapping
+    @GetMapping("/orientacoes")
     public ResponseEntity<List<OrientacaoSexual>> listarTodos() {
         return ResponseEntity.ok(orientacaoRepository.findAll());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/orientacoes/{id}")
     public ResponseEntity<OrientacaoSexual> buscarPorId(@PathVariable Integer id) {
         return orientacaoRepository.findById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @PostMapping
+    @PostMapping("/orientacoes")
     public ResponseEntity<OrientacaoSexual> criar(@RequestBody OrientacaoSexual orientacao) {
         return ResponseEntity.ok(orientacaoRepository.save(orientacao));
     }
