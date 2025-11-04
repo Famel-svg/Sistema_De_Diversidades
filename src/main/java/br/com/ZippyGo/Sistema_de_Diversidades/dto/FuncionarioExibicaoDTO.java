@@ -10,9 +10,9 @@ public record FuncionarioExibicaoDTO (
                     funcionario.getCdFuncionario(),
                     funcionario.getNmFuncionario(),
                     funcionario.getDtContratacao().toString(),
-                    funcionario.getGenero().toString(),
-                    funcionario.getOrientacaoSexual().toString(),
-                    funcionario.getRacaEtnia().toString(),
+                    funcionario.getGenero().getNmGenero(),
+                    funcionario.getOrientacaoSexual().getNmOrientacao(),
+                    funcionario.getRacaEtnia().getNmRacaEtnia(),
                     funcionario.getStatusFuncionario()
             );
         }
