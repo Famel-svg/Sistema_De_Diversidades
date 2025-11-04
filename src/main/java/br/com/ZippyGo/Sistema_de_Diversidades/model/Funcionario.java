@@ -12,28 +12,28 @@ public class Funcionario {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_PADRAO")
     @SequenceGenerator(name = "SEQ_PADRAO", sequenceName = "SEQ_PADRAO", allocationSize = 1)
     @Column(name = "cd_funcionario")
-    private Integer cdFuncionario;  // ✅ camelCase
+    private Integer cdFuncionario;
 
     @Column(name = "nm_funcionario", length = 100)
-    private String nmFuncionario;  // ✅ camelCase
+    private String nmFuncionario;
 
     @Column(name = "dt_contratacao")
-    private LocalDate dtContratacao;  // ✅ camelCase
+    private LocalDate dtContratacao;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cd_genero")
     private Genero genero;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cd_raca_etnia")
     private RacaEtnia racaEtnia;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cd_orientacao_sexual")
     private OrientacaoSexual orientacaoSexual;
 
     @Column(name = "status_funcionario", length = 10)
-    private String statusFuncionario;  // ✅ camelCase
+    private String statusFuncionario;
 
     // Getters e Setters
     public Integer getCdFuncionario() {

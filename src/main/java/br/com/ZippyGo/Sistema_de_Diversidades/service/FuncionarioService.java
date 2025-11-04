@@ -25,5 +25,4 @@ public class FuncionarioService {
     public List<FuncionarioExibicaoDTO> listar(){
         return funcionarioRepository.findAll().stream().map(FuncionarioExibicaoDTO::new).toList();
     }
-
 }
