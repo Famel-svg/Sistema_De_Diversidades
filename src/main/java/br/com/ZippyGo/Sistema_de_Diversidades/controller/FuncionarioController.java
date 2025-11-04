@@ -1,5 +1,6 @@
 package br.com.ZippyGo.Sistema_de_Diversidades.controller;
 
+import br.com.ZippyGo.Sistema_de_Diversidades.dto.FuncionarioExibicaoDTO;
 import br.com.ZippyGo.Sistema_de_Diversidades.service.FuncionarioService;
 import br.com.ZippyGo.Sistema_de_Diversidades.model.Funcionario;
 import br.com.ZippyGo.Sistema_de_Diversidades.repository.FuncionarioRepository;
@@ -23,11 +24,13 @@ public class FuncionarioController {
 
     // GET - Listar todos os funcionários
     @GetMapping("/funcionarios")
-    public ResponseEntity <List<Funcionario>> listarTodos() {
-        List<Funcionario> funcionarios = funcionarioRepository.findAll();
-        return ResponseEntity.ok(funcionarios); }
+    public ResponseEntity<List<FuncionarioExibicaoDTO>> listarTodos() {
+        List<FuncionarioExibicaoDTO> funcionarios = funcionarioService.listar();
+        return ResponseEntity.ok(funcionarios);
+    }
 
-    // GET - Buscar funcionário por ID
+
+        // GET - Buscar funcionário por ID
     @GetMapping("/funcionarios/{id}")
     public ResponseEntity<Funcionario> buscarPorId(@PathVariable Integer id) {
         Optional<Funcionario> funcionario = funcionarioRepository.findById(id);

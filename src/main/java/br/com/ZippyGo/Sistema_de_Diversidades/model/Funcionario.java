@@ -10,10 +10,12 @@ public class Funcionario {
 
     @Id
     @GeneratedValue(
-            strategy = GenerationType.SEQUENCE, generator = "SEQ_PADRAO"
+            strategy = GenerationType.SEQUENCE,
+            generator = "SEQ_PADRAO"
     )
     @SequenceGenerator(
-            name = "SEQ_PADRAO", sequenceName = "SEQ_PADRAO", allocationSize = 1
+            name = "SEQ_PADRAO", sequenceName = "SEQ_PADRAO",
+            allocationSize = 1
     )
     @Column(name = "CD_FUNCIONARIO")
     private Integer cdFuncionario;
