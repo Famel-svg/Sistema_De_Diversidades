@@ -1,7 +1,7 @@
 -- ============================================
 -- CREATE SEQUENCE
 -- ============================================
-CREATE SEQUENCE seq_padrao START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE SEQ_PADRAO START WITH 1 INCREMENT BY 1;
 
 -- ============================================
 -- CREATE TABLES

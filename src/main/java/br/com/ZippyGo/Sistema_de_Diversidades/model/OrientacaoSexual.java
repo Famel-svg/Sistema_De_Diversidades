@@ -10,7 +10,7 @@ public class OrientacaoSexual {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_PADRAO")
     @SequenceGenerator(name = "SEQ_PADRAO", sequenceName = "SEQ_PADRAO", allocationSize = 1)
-    @Column(name = "cd_orientacao_sexual")
+    @Column(name = "CD_ORIENTACAO_SEXUAL")
     private Integer cdOrientacaoSexual;
 
     @Column(name = "nm_orientacao", length = 50)

@@ -9,30 +9,34 @@ import java.util.Objects;
 public class Funcionario {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_PADRAO")
-    @SequenceGenerator(name = "SEQ_PADRAO", sequenceName = "SEQ_PADRAO", allocationSize = 1)
-    @Column(name = "cd_funcionario")
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE, generator = "SEQ_PADRAO"
+    )
+    @SequenceGenerator(
+            name = "SEQ_PADRAO", sequenceName = "SEQ_PADRAO", allocationSize = 1
+    )
+    @Column(name = "CD_FUNCIONARIO")
     private Integer cdFuncionario;
 
-    @Column(name = "nm_funcionario", length = 100)
+    @Column(name = "NM_FUNCIONARIO")
     private String nmFuncionario;
 
-    @Column(name = "dt_contratacao")
+    @Column(name = "DT_CONTRATACAO")
     private LocalDate dtContratacao;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "cd_genero")
+    @JoinColumn(name = "CD_GENERO")
     private Genero genero;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "cd_raca_etnia")
+    @JoinColumn(name = "CD_RACA_ETNIA")
     private RacaEtnia racaEtnia;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "cd_orientacao_sexual")
+    @JoinColumn(name = "CD_ORIENTACAO_SEXUAL")
     private OrientacaoSexual orientacaoSexual;
 
-    @Column(name = "status_funcionario", length = 10)
+    @Column(name = "STATUS_FUNCIONARIO")
     private String statusFuncionario;
 
     // Getters e Setters

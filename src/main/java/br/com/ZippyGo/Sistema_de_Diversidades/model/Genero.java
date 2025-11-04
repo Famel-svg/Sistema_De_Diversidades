@@ -19,7 +19,7 @@ public class Genero {
     @Column(name = "CD_GENERO")
     private Integer cdGenero;
 
-    @Column(name = "NM_GENERO", length = 10)
+    @Column(name = "NM_GENERO", length = 50)
     private String nmGenero;
 
     @OneToMany(mappedBy = "genero", fetch = FetchType.LAZY)

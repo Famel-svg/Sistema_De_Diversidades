@@ -2,6 +2,7 @@ package br.com.ZippyGo.Sistema_de_Diversidades.service;
 
 import br.com.ZippyGo.Sistema_de_Diversidades.dto.FuncionarioCadastroDTO;
 import br.com.ZippyGo.Sistema_de_Diversidades.dto.FuncionarioExibicaoDTO;
+import br.com.ZippyGo.Sistema_de_Diversidades.exceptions.ListaVaziaException;
 import br.com.ZippyGo.Sistema_de_Diversidades.model.Funcionario;
 import br.com.ZippyGo.Sistema_de_Diversidades.repository.FuncionarioRepository;
 import org.springframework.beans.BeanUtils;
@@ -23,6 +24,14 @@ public class FuncionarioService {
     }
 
     public List<FuncionarioExibicaoDTO> listar(){
-        return funcionarioRepository.findAll().stream().map(FuncionarioExibicaoDTO::new).toList();
+        List<Funcionario> funcionarios = funcionarioRepository.findAll();
+
+        if (funcionarios.isEmpty()) {
+            // Lança a exceção personalizada
+            throw new ListaVaziaException("Funcionários");
+        }
+
+        return funcionarios.stream().map(FuncionarioExibicaoDTO::new).toList();
     }
+
 }

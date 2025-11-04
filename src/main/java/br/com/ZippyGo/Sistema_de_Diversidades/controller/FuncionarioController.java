@@ -1,6 +1,5 @@
 package br.com.ZippyGo.Sistema_de_Diversidades.controller;
 
-import br.com.ZippyGo.Sistema_de_Diversidades.dto.FuncionarioExibicaoDTO;
 import br.com.ZippyGo.Sistema_de_Diversidades.service.FuncionarioService;
 import br.com.ZippyGo.Sistema_de_Diversidades.model.Funcionario;
 import br.com.ZippyGo.Sistema_de_Diversidades.repository.FuncionarioRepository;
@@ -8,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -25,8 +23,8 @@ public class FuncionarioController {
 
     // GET - Listar todos os funcionários
     @GetMapping("/funcionarios")
-    public ResponseEntity <List<FuncionarioExibicaoDTO>> listarTodos() {
-        List<FuncionarioExibicaoDTO> funcionarios = funcionarioService.listar();
+    public ResponseEntity <List<Funcionario>> listarTodos() {
+        List<Funcionario> funcionarios = funcionarioRepository.findAll();
         return ResponseEntity.ok(funcionarios); }
 
     // GET - Buscar funcionário por ID
@@ -47,7 +45,7 @@ public class FuncionarioController {
 
     // POST - Criar novo funcionário
     @PostMapping("/funcionarios")
-    public ResponseEntity<Funcionario> criar(@RequestBody Funcionario funcionario) {
+    public ResponseEntity<Funcionario> gravar(@RequestBody Funcionario funcionario) {
         Funcionario novoFuncionario = funcionarioRepository.save(funcionario);
         return ResponseEntity.status(HttpStatus.CREATED).body(novoFuncionario);
     }

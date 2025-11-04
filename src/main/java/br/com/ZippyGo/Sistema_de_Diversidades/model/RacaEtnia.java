@@ -17,7 +17,7 @@ public class RacaEtnia {
             sequenceName = "SEQ_PADRAO",
             allocationSize = 1
     )
-    @Column(name = "cd_raca_etnia")
+    @Column(name = "CD_RACA_ETNIA")
     private Integer cdRacaEtnia;
 
     @Column(name = "NM_RACA_ETNIA")
