@@ -7,6 +7,7 @@ import br.com.ZippyGo.Sistema_de_Diversidades.model.Funcionario;
 import br.com.ZippyGo.Sistema_de_Diversidades.repository.FuncionarioRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,10 +17,15 @@ public class FuncionarioService {
 
     @Autowired
     private FuncionarioRepository funcionarioRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public FuncionarioExibicaoDTO gravar(FuncionarioCadastroDTO funcionarioCadastroDTO){
         Funcionario funcionario = new Funcionario();
         BeanUtils.copyProperties(funcionarioCadastroDTO, funcionario);
+
+        funcionario.setSenhaFuncionario(passwordEncoder.encode(funcionarioCadastroDTO.getsenhaFuncionario()));
+
         return new FuncionarioExibicaoDTO(funcionarioRepository.save(funcionario));
     }
 

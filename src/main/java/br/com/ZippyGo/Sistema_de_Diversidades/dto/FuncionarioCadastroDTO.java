@@ -9,6 +9,9 @@ public record FuncionarioCadastroDTO(
         @NotBlank(message = "Nome do funcionario é obrigatorio!")
         String nmFuncionario,
 
+        @NotBlank(message = "Senha é obrigatório!")
+        String senhaFuncionario,
+
         @NotBlank(message = "Data da contratação do funcionario é obrigatorio!")
         String dtContratacao,
 
@@ -23,5 +26,8 @@ public record FuncionarioCadastroDTO(
 
         @NotBlank(message = "Status do funcionario é obrigatorio!")
         String status_funcionario
-) {
+){
+        public String getsenhaFuncionario() {
+                return senhaFuncionario;
+        }
 }

@@ -23,6 +23,9 @@ public class Funcionario {
     @Column(name = "NM_FUNCIONARIO")
     private String nmFuncionario;
 
+    @Column(name = "SENHA_FUNCIONARIO")
+    private String senhaFuncionario;
+
     @Column(name = "DT_CONTRATACAO")
     private LocalDate dtContratacao;
 
@@ -96,6 +99,14 @@ public class Funcionario {
 
     public void setStatusFuncionario(String statusFuncionario) {
         this.statusFuncionario = statusFuncionario;
+    }
+
+    public String getSenhaFuncionario() {
+        return senhaFuncionario;
+    }
+
+    public void setSenhaFuncionario(String senhaFuncionario) {
+        this.senhaFuncionario = senhaFuncionario;
     }
 
     @Override
