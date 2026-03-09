@@ -1,8 +1,13 @@
 package br.com.ZippyGo.Sistema_de_Diversidades.dto;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class LoginRequestDTO {
+    @JsonProperty("nomeFuncionario")
     private String nomeFuncionario;
+    @JsonProperty("senhaFuncionario")
     private String senhaFuncionario;
+
+    public LoginRequestDTO() {}
 
     public String getNomeFuncionario() {
         return nomeFuncionario;

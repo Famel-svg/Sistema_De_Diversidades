@@ -1,6 +1,7 @@
 package br.com.ZippyGo.Sistema_de_Diversidades.controller;
 
 import br.com.ZippyGo.Sistema_de_Diversidades.dto.FuncionarioExibicaoDTO;
+import br.com.ZippyGo.Sistema_de_Diversidades.dto.FuncionarioCadastroDTO;
 import br.com.ZippyGo.Sistema_de_Diversidades.service.FuncionarioService;
 import br.com.ZippyGo.Sistema_de_Diversidades.model.Funcionario;
 import br.com.ZippyGo.Sistema_de_Diversidades.repository.FuncionarioRepository;
@@ -48,8 +49,8 @@ public class FuncionarioController {
 
     // POST - Criar novo funcionário
     @PostMapping("/funcionarios")
-    public ResponseEntity<Funcionario> gravar(@RequestBody Funcionario funcionario) {
-        Funcionario novoFuncionario = funcionarioRepository.save(funcionario);
+    public ResponseEntity<FuncionarioExibicaoDTO> gravar(@RequestBody FuncionarioCadastroDTO funcionarioDTO) {
+        FuncionarioExibicaoDTO novoFuncionario = funcionarioService.gravar(funcionarioDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(novoFuncionario);
     }
 

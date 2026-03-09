@@ -25,7 +25,7 @@ public class AutenticacaoService {
     public String login(LoginRequestDTO request) {
         Optional<Funcionario> userOpt = funcionarioRepository.findByNmFuncionario(request.getNomeFuncionario());
 
-        if (userOpt.isPresent()) throw new RuntimeException("Usuário não encontrado");
+        if (userOpt.isEmpty()) throw new RuntimeException("Usuário não encontrado");
         Funcionario user = userOpt.get();
 
         if (!passwordEncoder.matches(request.getSenhaFuncionario(), user.getSenhaFuncionario()))
