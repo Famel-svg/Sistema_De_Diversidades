@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-
 @RestController
 @RequestMapping("/api")
 public class FuncionarioController {
@@ -40,7 +39,7 @@ public class FuncionarioController {
     }
 
     // GET - Buscar funcionário por nome
-    @GetMapping("/funcionarios/{nome}")
+    @GetMapping("/funcionarios/nome/{nome}")
     public ResponseEntity<Funcionario> buscarPorNome(@PathVariable String nome) {
         Optional<Funcionario> funcionario = funcionarioRepository.findByNmFuncionario(nome);
         return funcionario.map(ResponseEntity::ok)

@@ -58,23 +58,25 @@ CREATE TABLE T_BS_ORIENTACAO_SEXUAL (
                                         PRIMARY KEY (cd_orientacao_sexual)
 );
 
-CREATE TABLE FUNCIONARIO (
-                             cd_funcionario INTEGER NOT NULL,
-                             nm_funcionario VARCHAR2(100),
-                             dt_contratacao DATE,
-                             cd_genero INTEGER,
-                             cd_raca_etnia INTEGER,
-                             cd_orientacao_sexual INTEGER,
-                             status_funcionario VARCHAR2(10),
-                             PRIMARY KEY (cd_funcionario),
-                             FOREIGN KEY (cd_genero) REFERENCES GENERO(cd_genero),
-                             FOREIGN KEY (cd_raca_etnia) REFERENCES RACA_ETNIA(cd_raca_etnia),
-                             FOREIGN KEY (cd_orientacao_sexual) REFERENCES ORIENTACAO_SEXUAL(cd_orientacao_sexual)
+CREATE TABLE FUNCIONARIOS (
+                              cd_funcionario INTEGER NOT NULL,
+                              nm_funcionario VARCHAR2(100),
+                              senha_funcionario VARCHAR2(255),
+                              dt_contratacao DATE,
+                              cd_genero INTEGER,
+                              cd_raca_etnia INTEGER,
+                              cd_orientacao_sexual INTEGER,
+                              status_funcionario VARCHAR2(10),
+                              PRIMARY KEY (cd_funcionario),
+                              FOREIGN KEY (cd_genero) REFERENCES GENERO(cd_genero),
+                              FOREIGN KEY (cd_raca_etnia) REFERENCES RACA_ETNIA(cd_raca_etnia),
+                              FOREIGN KEY (cd_orientacao_sexual) REFERENCES ORIENTACAO_SEXUAL(cd_orientacao_sexual)
 );
 
 CREATE TABLE T_BS_FUNCIONARIOS (
                                    cd_funcionario INTEGER NOT NULL,
                                    nm_funcionario VARCHAR2(100),
+                                   senha_funcionario VARCHAR2(255),
                                    dt_contratacao DATE,
                                    cd_genero INTEGER,
                                    cd_raca_etnia INTEGER,
@@ -140,12 +142,30 @@ INSERT INTO T_BS_INICIATIVAS VALUES (3, 'Semana da Consciencia Negra', TO_DATE('
 INSERT INTO T_BS_INICIATIVAS VALUES (4, 'Mentoria para Mulheres', TO_DATE('2025-08-01','YYYY-MM-DD'), 'Desenvolvimento');
 INSERT INTO T_BS_INICIATIVAS VALUES (5, 'Programa de Talentos Diversos', TO_DATE('2025-09-10','YYYY-MM-DD'), 'Recrutamento');
 
-INSERT INTO FUNCIONARIO VALUES (1, 'Joao Requejo', TO_DATE('2024-03-10','YYYY-MM-DD'), 2, 1, 1, 'Ativo');
-INSERT INTO FUNCIONARIO VALUES (2, 'Hanelore Seydel', TO_DATE('2024-04-15','YYYY-MM-DD'), 1, 1, 2, 'Ativo');
-INSERT INTO FUNCIONARIO VALUES (3, 'Lucas Manica', TO_DATE('2024-05-20','YYYY-MM-DD'), 2, 1, 1, 'Ativo');
-INSERT INTO FUNCIONARIO VALUES (4, 'Pedro Arthur Saldanha', TO_DATE('2024-06-01','YYYY-MM-DD'), 2, 1, 1, 'Ativo');
+-- ============================================
+-- Senha de todos os funcionários: 123456
+-- Hash BCrypt: $2a$10$8.UnVuG9HHgffUDAlk8qfOuVGkqRzgVymGe07xd00DMxs.TVuHOn2
+-- ============================================
+INSERT INTO FUNCIONARIOS (cd_funcionario, nm_funcionario, senha_funcionario, dt_contratacao, cd_genero, cd_raca_etnia, cd_orientacao_sexual, status_funcionario)
+VALUES (1, 'Joao Requejo', '$2a$10$8.UnVuG9HHgffUDAlk8qfOuVGkqRzgVymGe07xd00DMxs.TVuHOn2', TO_DATE('2024-03-10','YYYY-MM-DD'), 2, 1, 1, 'Ativo');
 
-INSERT INTO T_BS_FUNCIONARIOS VALUES (1, 'Joao Requejo', TO_DATE('2024-03-10','YYYY-MM-DD'), 2, 1, 1);
-INSERT INTO T_BS_FUNCIONARIOS VALUES (2, 'Hanelore Seydel', TO_DATE('2024-04-15','YYYY-MM-DD'), 1, 1, 2);
-INSERT INTO T_BS_FUNCIONARIOS VALUES (3, 'Lucas Manica', TO_DATE('2024-05-20','YYYY-MM-DD'), 2, 1, 1);
-INSERT INTO T_BS_FUNCIONARIOS VALUES (4, 'Pedro Arthur Saldanha', TO_DATE('2024-06-01','YYYY-MM-DD'), 2, 1, 1);
+INSERT INTO FUNCIONARIOS (cd_funcionario, nm_funcionario, senha_funcionario, dt_contratacao, cd_genero, cd_raca_etnia, cd_orientacao_sexual, status_funcionario)
+VALUES (2, 'Hanelore Seydel', '$2a$10$8.UnVuG9HHgffUDAlk8qfOuVGkqRzgVymGe07xd00DMxs.TVuHOn2', TO_DATE('2024-04-15','YYYY-MM-DD'), 1, 1, 2, 'Ativo');
+
+INSERT INTO FUNCIONARIOS (cd_funcionario, nm_funcionario, senha_funcionario, dt_contratacao, cd_genero, cd_raca_etnia, cd_orientacao_sexual, status_funcionario)
+VALUES (3, 'Lucas Manica', '$2a$10$8.UnVuG9HHgffUDAlk8qfOuVGkqRzgVymGe07xd00DMxs.TVuHOn2', TO_DATE('2024-05-20','YYYY-MM-DD'), 2, 1, 1, 'Ativo');
+
+INSERT INTO FUNCIONARIOS (cd_funcionario, nm_funcionario, senha_funcionario, dt_contratacao, cd_genero, cd_raca_etnia, cd_orientacao_sexual, status_funcionario)
+VALUES (4, 'Pedro Arthur Saldanha', '$2a$10$8.UnVuG9HHgffUDAlk8qfOuVGkqRzgVymGe07xd00DMxs.TVuHOn2', TO_DATE('2024-06-01','YYYY-MM-DD'), 2, 1, 1, 'Ativo');
+
+INSERT INTO T_BS_FUNCIONARIOS (cd_funcionario, nm_funcionario, senha_funcionario, dt_contratacao, cd_genero, cd_raca_etnia, cd_orientacao_sexual)
+VALUES (1, 'Joao Requejo', '$2a$10$8.UnVuG9HHgffUDAlk8qfOuVGkqRzgVymGe07xd00DMxs.TVuHOn2', TO_DATE('2024-03-10','YYYY-MM-DD'), 2, 1, 1);
+
+INSERT INTO T_BS_FUNCIONARIOS (cd_funcionario, nm_funcionario, senha_funcionario, dt_contratacao, cd_genero, cd_raca_etnia, cd_orientacao_sexual)
+VALUES (2, 'Hanelore Seydel', '$2a$10$8.UnVuG9HHgffUDAlk8qfOuVGkqRzgVymGe07xd00DMxs.TVuHOn2', TO_DATE('2024-04-15','YYYY-MM-DD'), 1, 1, 2);
+
+INSERT INTO T_BS_FUNCIONARIOS (cd_funcionario, nm_funcionario, senha_funcionario, dt_contratacao, cd_genero, cd_raca_etnia, cd_orientacao_sexual)
+VALUES (3, 'Lucas Manica', '$2a$10$8.UnVuG9HHgffUDAlk8qfOuVGkqRzgVymGe07xd00DMxs.TVuHOn2', TO_DATE('2024-05-20','YYYY-MM-DD'), 2, 1, 1);
+
+INSERT INTO T_BS_FUNCIONARIOS (cd_funcionario, nm_funcionario, senha_funcionario, dt_contratacao, cd_genero, cd_raca_etnia, cd_orientacao_sexual)
+VALUES (4, 'Pedro Arthur Saldanha', '$2a$10$8.UnVuG9HHgffUDAlk8qfOuVGkqRzgVymGe07xd00DMxs.TVuHOn2', TO_DATE('2024-06-01','YYYY-MM-DD'), 2, 1, 1);
