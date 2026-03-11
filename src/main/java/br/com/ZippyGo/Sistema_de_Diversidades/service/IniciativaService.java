@@ -7,7 +7,6 @@ import br.com.ZippyGo.Sistema_de_Diversidades.model.Iniciativa;
 import br.com.ZippyGo.Sistema_de_Diversidades.repository.IniciativaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDate;
 import java.util.List;
 
@@ -20,7 +19,10 @@ public class IniciativaService {
     public IniciativaExibicaoDTO gravar(IniciativaCadastroDTO dto) {
         Iniciativa iniciativa = new Iniciativa();
         iniciativa.setNmIniciativa(dto.nmIniciativa());
-        iniciativa.setDtIniciativa(LocalDate.parse(dto.dtIniciativa()));
+
+        LocalDate dataIniciativa = LocalDate.parse(dto.dtIniciativa());
+        iniciativa.setDtIniciativa(dataIniciativa);
+
         iniciativa.setTpIniciativa(dto.tpIniciativa());
         return new IniciativaExibicaoDTO(iniciativaRepository.save(iniciativa));
     }
