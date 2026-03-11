@@ -1,5 +1,6 @@
 package br.com.ZippyGo.Sistema_de_Diversidades.advice;
 
+import br.com.ZippyGo.Sistema_de_Diversidades.exceptions.LoginInvalidoException;
 import br.com.ZippyGo.Sistema_de_Diversidades.exceptions.ListaVaziaException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -31,12 +32,21 @@ public class ApplicationControllerAdvice {
         return errorMap;
     }
 
-    @ExceptionHandler(RuntimeException.class)
+    @ExceptionHandler(LoginInvalidoException.class)
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
-    public Map<String, String> handleRuntimeException(RuntimeException ex) {
+    public Map<String, String> handleLoginInvalidoException(LoginInvalidoException ex) {
         Map<String, String> errorMap = new HashMap<>();
         errorMap.put("erro", ex.getMessage());
         errorMap.put("status", HttpStatus.UNAUTHORIZED.toString());
+        return errorMap;
+    }
+
+    @ExceptionHandler(RuntimeException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public Map<String, String> handleRuntimeException(RuntimeException ex) {
+        Map<String, String> errorMap = new HashMap<>();
+        errorMap.put("erro", ex.getMessage());
+        errorMap.put("status", HttpStatus.BAD_REQUEST.toString());
         return errorMap;
     }
 

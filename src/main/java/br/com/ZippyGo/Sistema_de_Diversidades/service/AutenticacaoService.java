@@ -2,6 +2,7 @@ package br.com.ZippyGo.Sistema_de_Diversidades.service;
 
 import br.com.ZippyGo.Sistema_de_Diversidades.Security.JwtUtil;
 import br.com.ZippyGo.Sistema_de_Diversidades.dto.LoginRequestDTO;
+import br.com.ZippyGo.Sistema_de_Diversidades.exceptions.LoginInvalidoException;
 import br.com.ZippyGo.Sistema_de_Diversidades.model.Funcionario;
 import br.com.ZippyGo.Sistema_de_Diversidades.repository.FuncionarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,11 +26,11 @@ public class AutenticacaoService {
     public String login(LoginRequestDTO request) {
         Optional<Funcionario> userOpt = funcionarioRepository.findByNmFuncionario(request.getNomeFuncionario());
 
-        if (userOpt.isEmpty()) throw new RuntimeException("Usuário não encontrado");
+        if (userOpt.isEmpty()) throw new LoginInvalidoException("Usuário não encontrado");
         Funcionario user = userOpt.get();
 
         if (!passwordEncoder.matches(request.getSenhaFuncionario(), user.getSenhaFuncionario()))
-            throw new RuntimeException("Senha incorreta");
+            throw new LoginInvalidoException("Senha incorreta");
 
         return jwtUtil.geraToken(user.getNmFuncionario());
     }
