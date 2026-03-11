@@ -2,7 +2,6 @@ package br.com.ZippyGo.Sistema_de_Diversidades.dto;
 
 import jakarta.validation.constraints.NotBlank;
 
-
 public record FuncionarioCadastroDTO(
         Integer cdFuncionario,
 
@@ -26,8 +25,9 @@ public record FuncionarioCadastroDTO(
 
         @NotBlank(message = "Status do funcionario é obrigatorio!")
         String status_funcionario
-){
-        public String getsenhaFuncionario() {
-                return senhaFuncionario;
-        }
+) {
+
+    public String getSenhaFuncionario() {
+        return senhaFuncionario;
+    }
 }

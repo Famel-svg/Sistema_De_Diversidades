@@ -13,34 +13,19 @@ public class OrientacaoSexual {
     @Column(name = "CD_ORIENTACAO_SEXUAL")
     private Integer cdOrientacaoSexual;
 
-    @Column(name = "nm_orientacao", length = 50)
+    // CORRIGIDO: NM_ORIENTACAO em maiúsculo, consistente com os demais entities
+    @Column(name = "NM_ORIENTACAO", length = 50)
     private String nmOrientacao;
 
     @OneToMany(mappedBy = "orientacaoSexual", fetch = FetchType.LAZY)
     private List<Funcionario> funcionario;
 
-    // Getters e Setters
-    public Integer getCdOrientacaoSexual() {
-        return cdOrientacaoSexual;
-    }
+    public Integer getCdOrientacaoSexual() { return cdOrientacaoSexual; }
+    public void setCdOrientacaoSexual(Integer cdOrientacaoSexual) { this.cdOrientacaoSexual = cdOrientacaoSexual; }
 
-    public void setCdOrientacaoSexual(Integer cdOrientacaoSexual) {
-        this.cdOrientacaoSexual = cdOrientacaoSexual;
-    }
+    public String getNmOrientacao() { return nmOrientacao; }
+    public void setNmOrientacao(String nmOrientacao) { this.nmOrientacao = nmOrientacao; }
 
-    public String getNmOrientacao() {
-        return nmOrientacao;
-    }
-
-    public void setNmOrientacao(String nmOrientacao) {
-        this.nmOrientacao = nmOrientacao;
-    }
-
-    public List<Funcionario> getFuncionario() {
-        return funcionario;
-    }
-
-    public void setFuncionario(List<Funcionario> funcionario) {
-        this.funcionario = funcionario;
-    }
+    public List<Funcionario> getFuncionario() { return funcionario; }
+    public void setFuncionario(List<Funcionario> funcionario) { this.funcionario = funcionario; }
 }

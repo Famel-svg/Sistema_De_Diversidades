@@ -8,7 +8,6 @@ import br.com.ZippyGo.Sistema_de_Diversidades.repository.FuncionarioRepository;
 import br.com.ZippyGo.Sistema_de_Diversidades.repository.GeneroRepository;
 import br.com.ZippyGo.Sistema_de_Diversidades.repository.Orientacao_SexualRepository;
 import br.com.ZippyGo.Sistema_de_Diversidades.repository.Raca_EtniaRepository;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -30,10 +29,11 @@ public class FuncionarioService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public FuncionarioExibicaoDTO gravar(FuncionarioCadastroDTO funcionarioCadastroDTO){
+    public FuncionarioExibicaoDTO gravar(FuncionarioCadastroDTO funcionarioCadastroDTO) {
         Funcionario funcionario = new Funcionario();
         funcionario.setNmFuncionario(funcionarioCadastroDTO.nmFuncionario());
-        funcionario.setSenhaFuncionario(passwordEncoder.encode(funcionarioCadastroDTO.getsenhaFuncionario()));
+        // CORRIGIDO: getSenhaFuncionario (S maiúsculo)
+        funcionario.setSenhaFuncionario(passwordEncoder.encode(funcionarioCadastroDTO.getSenhaFuncionario()));
         funcionario.setDtContratacao(LocalDate.parse(funcionarioCadastroDTO.dtContratacao()));
         funcionario.setStatusFuncionario(funcionarioCadastroDTO.status_funcionario());
 
@@ -47,15 +47,11 @@ public class FuncionarioService {
         return new FuncionarioExibicaoDTO(funcionarioRepository.save(funcionario));
     }
 
-    public List<FuncionarioExibicaoDTO> listar(){
+    public List<FuncionarioExibicaoDTO> listar() {
         List<Funcionario> funcionarios = funcionarioRepository.findAll();
-
         if (funcionarios.isEmpty()) {
-            // Lança a exceção personalizada
             throw new ListaVaziaException("Funcionários");
         }
-
         return funcionarios.stream().map(FuncionarioExibicaoDTO::new).toList();
     }
-
 }
