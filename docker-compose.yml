@@ -1,0 +1,48 @@
+services:
+
+  oracle-db:
+    image: gvenzl/oracle-xe:21-slim
+    container_name: oracle-diversidades
+    environment:
+      ORACLE_PASSWORD: ${ORACLE_PASSWORD}
+      APP_USER: ${DB_USER}
+      APP_USER_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "1521:1521"
+    volumes:
+      - oracle_data:/opt/oracle/oradata
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "healthcheck.sh"]
+      interval: 30s
+      timeout: 10s
+      retries: 15
+      start_period: 90s   # Oracle XE demora ~60s para iniciar
+
+  app:
+    build: .
+    container_name: sistema-diversidades
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:oracle:thin:@oracle-db:1521/XEPDB1
+      SPRING_DATASOURCE_USERNAME: ${DB_USER}
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: oracle.jdbc.OracleDriver
+      SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.OracleDialect
+      SPRING_PROFILES_ACTIVE: prod
+    depends_on:
+      oracle-db:
+        condition: service_healthy
+    networks:
+      - app-network
+    restart: on-failure
+
+volumes:
+  oracle_data:
+    name: oracle_diversidades_data
+
+networks:
+  app-network:
+    driver: bridge
