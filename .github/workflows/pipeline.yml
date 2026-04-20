@@ -34,7 +34,9 @@ jobs:
           restore-keys: ${{ runner.os }}-maven-
 
       - name: Compilar e empacotar
-        run: ./mvnw clean package -DskipTests -B
+        run: |
+          chmod +x mvnw
+          ./mvnw clean package -DskipTests -B
 
       - name: Salvar artefato
         uses: actions/upload-artifact@v4
@@ -66,7 +68,9 @@ jobs:
           restore-keys: ${{ runner.os }}-maven-
 
       - name: Executar testes (perfil H2)
-        run: ./mvnw test -Dspring.profiles.active=test -B
+        run: |
+          chmod +x mvnw
+          ./mvnw test -Dspring.profiles.active=test -B
 
   # ──────────────────────────────────────────
   # Job 3 — Build da imagem Docker e push GHCR
